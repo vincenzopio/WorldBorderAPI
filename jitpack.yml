@@ -1,19 +1,4 @@
 jdk:
   - openjdk21
-
-before_install:
-  - export JAVA_DIR=/home/jitpack/tools/jdk21
-  - mkdir -p $JAVA_DIR
-  - wget -nv https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz -O $JAVA_DIR/jdk21.tar.gz
-  - tar xfz $JAVA_DIR/jdk21.tar.gz --strip-components=1 -C $JAVA_DIR
-  - export JAVA_HOME=$JAVA_DIR
-  - export PATH=$JAVA_HOME/bin:$PATH
-  - java -version
-  - javac -version
-
 install:
-  - $JAVA_HOME/bin/java -version
-  - ./gradlew -v
-
-script:
-  - $JAVA_HOME/bin/java -jar gradle/wrapper/gradle-wrapper.jar listDeps -I ../deps.gradle
+  - ./gradlew clean assemble publishToMavenLocal
