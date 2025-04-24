@@ -1,5 +1,11 @@
 jdk:
   - openjdk17
+
 before_install:
-   - sdk install java 17.0.1-open
-   - sdk use java 17.0.1-open
+  - export JAVA_DIR=/home/jitpack/tools/jdk17
+  - mkdir -p $JAVA_DIR
+  - wget -nv https://download.java.net/java/GA/jdk17.0.1/2a2082e5a09d4267845be086888add4f/12/GPL/openjdk-17.0.1_linux-x64_bin.tar.gz -O $JAVA_DIR/jdk17.tar.gz
+  - tar xfz $JAVA_DIR/jdk17.tar.gz --strip-components=1 -C $JAVA_DIR
+  - export JAVA_HOME=$JAVA_DIR
+  - export PATH=$JAVA_HOME/bin:$PATH
+  - java -version
